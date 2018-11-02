@@ -31,6 +31,25 @@ This is because some of the larger Java libraries have a number sub components, 
 
 ## Install
 
+**Maven Central coming soon** - Otherwise use the source above in your own project and include the following dependencies:
+
+**Maven**
+```xml
+<dependency>
+ <groupId>de.grundid.opendatalab</groupId>
+ <artifactId>geojson-jackson</artifactId>
+ <version>1.8.1</version>
+</dependency>
+```
+
+**Gradle**
+```groovy
+dependencies {
+    // geojson-jackson
+    compile 'de.grundid.opendatalab:geojson-jackson:1.8.1'
+}
+```
+
 ## Usage
 **Importing GeoJson**
 ```java

@@ -1,3 +1,5 @@
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+
 # tiny-gis-java
 A very small (almost) pure java geographic information system (GIS) library, for manipulating geographic data.
 **Useful for Java Swing.**

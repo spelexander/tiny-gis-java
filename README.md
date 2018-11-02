@@ -1,26 +1,29 @@
 # tiny-gis-java
 A very small (almost) pure java geographic information system (GIS) library, for manipulating geographic data.
 
-Based on *geojson-jackson* by *opendatalab* (the only dependencies) for this project. 
+Based on *geojson-jackson* by *opendatalab* (the only dependencies) for this project.
+
 If you only want to import and export GeoJson in Java please visit the geojson-jackson open datalab repo:
 https://github.com/opendatalab-de/geojson-jackson
 
-## What is does
-A range of simple manipulation for Geospatial data in Java requiring minimal install and minimal GIS understanding:
+*WIP Disclaimer*: calculations may not be as accurate over very large distances as more comprehensive libraries.
 
--Distance between two Longitude/latitude's (Points)
--Get the bearing between Points
--Calculate a Point given a bearing (e.g. 45 degrees - or NE) and a distance from another Point
--Get the coordinate center of a group of Points/Features
--Rotate Features/Polygons around a center point 
--Import from GeoJson
--Export to GeoJson
--Calculate the intersection of Points/Features with one another
--Project Points/Features onto a grid (useful for showing LngLat polygons in Swing)
--Calculate best fit bearing to render on screen (useful for showing LngLat polygons in Swing)
+## What it does
+A range of simple manipulation for Geospatial data in Java requiring minimal install and minimal GIS understanding:
+- Distance between two Longitude/latitude's (Points)
+- Get the bearing between Points
+- Calculate a Point given a bearing (e.g. 45 degrees - or NE) and a distance from another Point
+- Get the coordinate center of a group of Points/Features
+- Rotate Features/Polygons around a center point 
+- Import from GeoJson
+- Export to GeoJson
+- Calculate the intersection of Points/Features with one another
+- Project Points/Features onto a grid (useful for showing LngLat polygons in Swing)
+- Calculate best fit bearing to render on screen (useful for showing LngLat polygons in Swing)
 
 ## Why
-It can be difficult to understand some of the larger and more comprehensive geo tooling java GIS libraries. Using them requires alot of unnecessary learning overhead, especially when you want to do simple manipulations of geospatial data.
+It can be difficult to understand some of the larger and more comprehensive geo tooling java libraries. 
+Using them requires alot of learning overhead, especially when you want to do simple manipulations of geospatial data.
 This is because some of the larger Java libraries have a number sub components, lack modern documentation, require building from source and are not integrated with modern package management tools such as Maven or Gradle.
 
 ## Install
@@ -28,7 +31,7 @@ This is because some of the larger Java libraries have a number sub components, 
 ## Usage
 *Importing GeoJson*
 ```java
-    File file = new File("./geojson.json");
+		File file = new File("./geojson.json");
 		MapGisGridAnnotationReader reader = new MapGisGridAnnotationReader();
 		List<GisGridAnnotation> result = reader.fromGeoJson(file);
 
@@ -43,7 +46,7 @@ This is because some of the larger Java libraries have a number sub components, 
 		List<GisGridAnnotation> result = new ArrayList<>(); // polygons
 
 		String jsonContent = reader.toGeoJson(result);
-    // Now write to file
+    		// Now write to file
 ```
 
 *Basics*

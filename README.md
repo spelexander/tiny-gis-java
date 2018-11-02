@@ -1,12 +1,13 @@
 # tiny-gis-java
 A very small (almost) pure java geographic information system (GIS) library, for manipulating geographic data.
+**Useful for Java Swing.**
 
-Based on *geojson-jackson* by *opendatalab* (the only dependencies) for this project.
+Based on **geojson-jackson** by **opendatalab** (the only dependencies) for this project.
 
 If you only want to import and export GeoJson in Java please visit the geojson-jackson open datalab repo:
 https://github.com/opendatalab-de/geojson-jackson
 
-*WIP Disclaimer*: calculations may not be as accurate over very large distances as more comprehensive libraries.
+**WIP Disclaimer**: calculations may not be as accurate over very large distances as more comprehensive libraries.
 
 ## What it does
 A range of simple manipulation for Geospatial data in Java requiring minimal install and minimal GIS understanding:
@@ -29,7 +30,7 @@ This is because some of the larger Java libraries have a number sub components, 
 ## Install
 
 ## Usage
-*Importing GeoJson*
+**Importing GeoJson**
 ```java
 		File file = new File("./geojson.json");
 		MapGisGridAnnotationReader reader = new MapGisGridAnnotationReader();
@@ -40,7 +41,7 @@ This is because some of the larger Java libraries have a number sub components, 
 		}
 ```
 
-*Exporting GeoJson*
+**Exporting GeoJson**
 ```java
 		MapGisGridAnnotationReader reader = new MapGisGridAnnotationReader();
 		List<GisGridAnnotation> result = new ArrayList<>(); // polygons
@@ -49,7 +50,7 @@ This is because some of the larger Java libraries have a number sub components, 
     		// Now write to file
 ```
 
-*Basics*
+**Basics**
 ```java
 		LngLatAlt a = new LngLatAlt(149.3865874610993, -35.07597449607705);
 		LngLatAlt b = new LngLatAlt(149.3876738387109, -35.07607456965434);
@@ -79,7 +80,7 @@ This is because some of the larger Java libraries have a number sub components, 
 		List<GisGridAnnotation> rotated = util.rotateTo(annotations, rotation, RotationType.NORTH);
 ```
 
-*Helpful for rendering (Java Swing)*
+**Functions for rendering (Java Swing)**
 ```java
 		// The following is particularly helpful for Java Swing transformations and rendering coordinates on screen
 		// A reference converter for you grid size to distances in meters and vice versa (USED BELOW)

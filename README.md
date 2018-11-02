@@ -1,7 +1,7 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 # tiny-gis-java
-A very small (almost) pure java geographic information system (GIS) library, for manipulating geographic data.
+A very small (almost) vanilla java geographic information system (GIS) library, for manipulating geographic data.
 **Useful for Java Swing.**
 
 Based on **geojson-jackson** by **opendatalab** (the only dependencies) for this project.

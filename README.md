@@ -53,121 +53,121 @@ dependencies {
 ## Usage
 **Importing GeoJson**
 ```java
-		File file = new File("./geojson.json");
-		MapGisGridAnnotationReader reader = new MapGisGridAnnotationReader();
-		List<GisGridAnnotation> result = reader.fromGeoJson(file);
+File file = new File("./geojson.json");
+MapGisGridAnnotationReader reader = new MapGisGridAnnotationReader();
+List<GisGridAnnotation> result = reader.fromGeoJson(file);
 
-		for (GisGridAnnotation ann : result) {
-			List<LngLatAlt> LongitudeLatitudeAltitudePoints = ann.getExteriorRing();
-		}
+for (GisGridAnnotation ann : result) {
+	List<LngLatAlt> LongitudeLatitudeAltitudePoints = ann.getExteriorRing();
+}
 ```
 
 **Exporting GeoJson**
 ```java
-		MapGisGridAnnotationReader reader = new MapGisGridAnnotationReader();
-		List<GisGridAnnotation> result = new ArrayList<>(); // polygons
+MapGisGridAnnotationReader reader = new MapGisGridAnnotationReader();
+List<GisGridAnnotation> result = new ArrayList<>(); // polygons
 
-		String jsonContent = reader.toGeoJson(result);
-    		// Now write to file
+String jsonContent = reader.toGeoJson(result);
+// Now write to file
 ```
 
 **Basics**
 ```java
-		LngLatAlt a = new LngLatAlt(149.3865874610993, -35.07597449607705);
-		LngLatAlt b = new LngLatAlt(149.3876738387109, -35.07607456965434);
+LngLatAlt a = new LngLatAlt(149.3865874610993, -35.07597449607705);
+LngLatAlt b = new LngLatAlt(149.3876738387109, -35.07607456965434);
 		
-		// Distance in meters between two points
-		Double meters = util.getDistanceBetween(a, b);
+// Distance in meters between two points
+Double meters = util.getDistanceBetween(a, b);
 		
-		// Bearing in degreses between two points
-		Double bearing = util.getBearing(a, b);
+// Bearing in degreses between two points
+Double bearing = util.getBearing(a, b);
 		
-		List<GisGridAnnotation> annotations = new ArrayList<>();
+List<GisGridAnnotation> annotations = new ArrayList<>();
 		
-		// Two connected points in all of the polygons which have the longest edge
-		List<LngLatAlt> largestDistanceBetween = util.getLongestLine(annotations);
+// Two connected points in all of the polygons which have the longest edge
+List<LngLatAlt> largestDistanceBetween = util.getLongestLine(annotations);
 		
-		// Center point of all polygons/coordinates
-		LngLatAlt centerPoint = util.getCenterPoint(annotations);
+// Center point of all polygons/coordinates
+LngLatAlt centerPoint = util.getCenterPoint(annotations);
 		
-		// Calculating the best field bearing to render the most on screen
-		ScaleRotation rotation = util.getBestFieldBearing(annotations);
-		Double bestBearing = rotation.bearing;
-		//rotation.do180();
-		//rotation.do90();
-		//...
+// Calculating the best field bearing to render the most on screen
+ScaleRotation rotation = util.getBestFieldBearing(annotations);
+Double bestBearing = rotation.bearing;
+//rotation.do180();
+//rotation.do90();
+//...
 		
-		// Rotating all coordinates/polyongs around a center point so that best bearing is now in line with N
-		List<GisGridAnnotation> rotated = util.rotateTo(annotations, rotation, RotationType.NORTH);
+// Rotating all coordinates/polyongs around a center point so that best bearing is now in line with N
+List<GisGridAnnotation> rotated = util.rotateTo(annotations, rotation, RotationType.NORTH);
 ```
 
 **Functions for rendering (Java Swing)**
 ```java
-		// The following is particularly helpful for Java Swing transformations and rendering coordinates on screen
-		// A reference converter for you grid size to distances in meters and vice versa (USED BELOW)
-		WidthHeightProvider widthHeightProvider = new WidthHeightProvider() {
+// The following is particularly helpful for Java Swing transformations and rendering coordinates on screen
+// A reference converter for you grid size to distances in meters and vice versa (USED BELOW)
+WidthHeightProvider widthHeightProvider = new WidthHeightProvider() {
 
-			@Override
-			public double getTotalUnitX() {
-				// TODO width in meters of a grid cell (or 1 X)
-				return 0;
-			}
+	@Override
+	public double getTotalUnitX() {
+		// TODO width in meters of a grid cell (or 1 X)
+		return 0;
+	}
 
-			@Override
-			public double getTotalUnitY() {
-				// TODO height in meters of a grid cell (or 1 Y)
-				return 0;
-			}
+	@Override
+	public double getTotalUnitY() {
+		// TODO height in meters of a grid cell (or 1 Y)
+		return 0;
+	}
 
-			@Override
-			public double getUnitXForMeters(double meters) {
-				// TODO the number of X units for a distance
-				return 0;
-			}
+	@Override
+	public double getUnitXForMeters(double meters) {
+		// TODO the number of X units for a distance
+		return 0;
+	}
 
-			@Override
-			public double getMetersForUnitX(double x) {
-				// TODO distance in meters for a single cell's width (or 1 X) in the grid
-				return 0;
-			}
+	@Override
+	public double getMetersForUnitX(double x) {
+		// TODO distance in meters for a single cell's width (or 1 X) in the grid
+		return 0;
+	}
 
-			@Override
-			public double getUnitYForMeters(double y_distance) {
-				// TODO the number of Y units for a distance
-				return 0;
-			}
+	@Override
+	public double getUnitYForMeters(double y_distance) {
+		// TODO the number of Y units for a distance
+		return 0;
+	}
 
-			@Override
-			public double getMetersForUnitY(double y) {
-				// TODO distance in meters for a single cell's height (or 1 Y) in the grid
-				return 0;
-			}
+	@Override
+	public double getMetersForUnitY(double y) {
+		// TODO distance in meters for a single cell's height (or 1 Y) in the grid
+		return 0;
+	}
 
-			@Override
-			public int getAdditionalY() {
-				// TODO Extra Y spacing from edges
-				return 0;
-			}
+	@Override
+	public int getAdditionalY() {
+		// TODO Extra Y spacing from edges
+		return 0;
+	}
 
-			@Override
-			public int getAdditionalX() {
-				// TODO Extra X spacing from edges
-				return 0;
-			}
-		};
+	@Override
+	public int getAdditionalX() {
+		// TODO Extra X spacing from edges
+		return 0;
+	}
+};
 		
-		// Calculate the best grid size for your coordinates/polygons and their bearing
-		Dimension gridSize = util.getFieldSizeToUse(annotations, rotation, widthHeightProvider);
+// Calculate the best grid size for your coordinates/polygons and their bearing
+Dimension gridSize = util.getFieldSizeToUse(annotations, rotation, widthHeightProvider);
 		
-		// The top left coordinate LngLat of your grid given the grid size, and other parameters
-		LngLatAlt topLeftPoint = util.getTopLeftPoint(annotations, gridSize, rotation, widthHeightProvider);
+// The top left coordinate LngLat of your grid given the grid size, and other parameters
+LngLatAlt topLeftPoint = util.getTopLeftPoint(annotations, gridSize, rotation, widthHeightProvider);
 		
-		// Transform a grid position to a LngLat
-		Point point = new Point(10, 15);
-		LngLatAlt transformedPoint = util.transformToLongLat(point, topLeftPoint, gridSize, rotation, widthHeightProvider);
+// Transform a grid position to a LngLat
+Point point = new Point(10, 15);
+LngLatAlt transformedPoint = util.transformToLongLat(point, topLeftPoint, gridSize, rotation, widthHeightProvider);
 		
-		// Transform a LngLatAlt to a grid position
-		Point transformedGridPoint = util.transformToXY(a, topLeftPoint, gridSize, rotation, widthHeightProvider);
+// Transform a LngLatAlt to a grid position
+Point transformedGridPoint = util.transformToXY(a, topLeftPoint, gridSize, rotation, widthHeightProvider);
  ```
 
 ### Example Swing Application:
